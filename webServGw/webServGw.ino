@@ -43,6 +43,8 @@ int vhfCurrent = 1;             //This variable stores the state of the VHF pre-
 int uhfCurrent = 1;             //This variable stores the state of the UHF pre-Amp
 int shfCurrent = 1;              //This variable stores the state of the SW pre-Amp
 
+
+
 void setup(){
   Ethernet.begin(mac, ip);  // initialize Ethernet device
   server.begin();           // start to listen for clients
@@ -98,12 +100,28 @@ void loop(){
           readString += c;                    //Creating the string readString
           readString.trim();                  //removing white spaces and end characters
           readString.remove(12);
+          
         }
       
         // last line of client request is blank and ends with \n
         // respond to client only after last line received
         if (c == '\n' && currentLineIsBlank) {
+           
+           
            Serial.println(readString);
+           
+            //Resetting all used pins to LOW
+            if (readString == "?POST/pReset") {
+              vhfCurrent = 1;             //Resetting toggle state of the VHF pre-Amp
+              uhfCurrent = 1;             //Resetting toggle state of the UHF pre-Amp
+              shfCurrent = 1;              //Resetting toggle state of the SW pre-Amp
+
+              Serial.println("Resetting pins to Low");
+              for(int i=22; i<=40; i++){
+              digitalWrite(i,LOW);
+              }
+          }
+           
             //Using readString for Identifying the buttons
             if (readString == "?POST/VHF_1H") {
             Serial.println("Button  1 found");
