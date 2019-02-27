@@ -21,7 +21,9 @@
 
 </style>
 
-        <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'></script>	
+        <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'>
+		
+		</script>	
 		
 	</head>
 	
@@ -31,15 +33,15 @@
 
   			<Div class="first">
 	
-				<button id="button_1">VHF. Hor.GP  </button>
-				<button id="button_2">VHF. Ver.Yagi</button>
+								<button id="button_1">VHF. Hor.GP  </button>
+								<button id="button_2">VHF. Ver.Yagi</button>
                                 <button id="button_3">VHF. Hor.Yagi</button>
                                 <button id="button_4">VHF. Hor.Halo</button>
                                 <button id="button_5">VHF. Pre.Amp </button>
   			</div>
 
 			<Div class="first">
-				<button id="button_6" >UHF. Hor.GP  </button>
+								<button id="button_6" >UHF. Hor.GP  </button>
                                 <button id="button_7" >UHF. Ver.Yagi</button>
                                 <button id="button_8" >UHF. Hor.Yagi</button>
                                 <button id="button_9" >UHF. Hor.Halo</button>
@@ -47,7 +49,7 @@
 			</div>
 
 			<Div class="first">
-				<button id="button_11" >Spare </button>
+								<button id="button_11" >Spare </button>
                                 <button id="button_12" >Spare </button>
                                 <button id="button_13" >Spare </button>
                                 <button id="button_14" >Spare </button>
@@ -65,7 +67,7 @@
 		
 <script>  
 $(document).ready (function(){
-
+$.post("pReset" );         //Posting reset id
 $("#T3").hide();
 				
 var i=0;	//Variable for the toggle row 1
@@ -95,7 +97,7 @@ myfunction("#button_16", 490,  20);
 $("#button_1").click(function(){
 $("#button_2, #button_3, #button_4").css('background-color', '#F0F8FF').css('color', 'black');
 $(this).css ('background-color', 'red').css('color', 'white');
-$.post("VHF_1" );         //Posting id	 
+$.post("VHF_1", function(data){ $("#responseText").val(data);}  );         //Posting id	 
 }); 	  	//end of click function
 
 
